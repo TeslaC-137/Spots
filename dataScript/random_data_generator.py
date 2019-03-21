@@ -8,46 +8,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 parkingLotsAvailable = [1320, 1295, 1265, 1245, 1250, 1300, 1320]
 statusOptions = ["Occupied", "Empty"]
-
-
-"""
-Sample data: 
-{
-    "receivedAt": "2018-03-17 22:07:42",
-    "parkingLot": "1365",
-    "parkingSpot": 2,
-    "status": "Occupied",
-    "occupiedUntil": "2018-03-17 23:30:00"
-}
-
-// Change parking spot availability every 1 minute. 
-"""
-
 bucketName = "parking-lot-data-bucket"
-
-"""
-
-from gcloud import storage
-from oauth2client.service_account import ServiceAccountCredentials
-import os
-
-
-credentials_dict = {
-    'type': 'service_account',
-    'client_id': os.environ['BACKUP_CLIENT_ID'],
-    'client_email': os.environ['BACKUP_CLIENT_EMAIL'],
-    'private_key_id': os.environ['BACKUP_PRIVATE_KEY_ID'],
-    'private_key': os.environ['BACKUP_PRIVATE_KEY'],
-}
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-    credentials_dict
-)
-client = storage.Client(credentials=credentials, project='myproject')
-bucket = client.get_bucket('mybucket')
-blob = bucket.blob('myfile')
-blob.upload_from_filename('myfile')
-
-"""
 
 
 def create_file(filename, blobName):
