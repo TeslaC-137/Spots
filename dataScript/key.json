@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "intro2cloudcomputing1",
+  "private_key_id": "2b1ac7f60fcf491cee817e82c39dc33f34000c3c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC+WYsHbIzYKbG3\n2OOuv4qP7pTyt2Aoz93aj4XGe7Vg1PXBmvbdKZigomN5p1fGXXORAtyUPRQVpVUI\nhFvp6wIllAShklyL0ESuV1BcUQ4qTs3AQ2jFfdHfjm6tj+ire3uW+n/Hmvr/cO/z\nxT5C38y/PaCeg8jvaPjRyitmVduV6sF4X7E5ngb4NgYlKyRwh1/WEbwzLJT0hRUH\nGRNZjKFe4Ue/cnpbYpLN2uMVuXc9szs+fQjbIPRF6Cg74A4+KA3hLH5TA+xtC8E+\nzBn8yrlShLvd/MPdlBeqzvqByOuSHYrGkSUhAMYR7ZoYgt10B24w1MqPDc47Lgsy\nnwVAg9TbAgMBAAECggEAOvan33PbqTY5K/cOiFojBPTlxM3TBrFlSse8q8A0bjtp\nqUBkihvRgKjs4YlZ4kOegeP+ChlleFMPpSTDCBHZR2Szjo01B8ZLECpR5VbiaW6h\nw5XeBZc1BOgtFqyGaWBF533PSTiT2b7VRZDq+XI0DWV8tL2j561/rhTPHtMnwyc8\nQNiug9PUWZgBIPPxVdN0OCBoUgnSDgFmxrixaiafbqMrOgGMVLiEbsjsmecLXNvU\nsKIjmGB8Oi+zqorSv0iaJjb4/l4uUSL6sPkvTxsO4VGtYryZIulZRPHueMinn27F\nLBR3S6TEVKMRu75AxS/I4p1/YLF91YKFaiwaFQWT6QKBgQD7O2FeiyXx46D3Tm0q\nwogqFT/F7O3Oh6Sb3Ir4yVyxFXV3XwDry8WmIfk0bi+Cubn/9YtmGG7c60M8ZCbT\ni44rs8/VXouMGHXiMEhouqJhXaivohP7PQZg9VSFeA5UUYj5ZPBReN8qwMeIN4f8\nW1jDSrT62fx2NcAdWHocTxfkpwKBgQDB9l1MbtvaJcP4siI8Si1Wa0B/XfaX0fRf\n/qPxZJFrvM9FwBuGloM/h4JbVA0V3up+9Ub6lYzSBvnw8lzeUFm62SY+iHYl9CbA\nlBIfChAOdZpTuo3Ndor2X8oV3053OKGGCLfZKoHsglLRnpmY/FPZD1RiKPHWPKHo\nzJ6YZmkwrQKBgQCthEWr1s9OUblLFY+wiMsixapWOV3F10mJnLkfO3QZmoiW+bbZ\nJNRN+gj0fWWzFDOy5RRyX02yp4q4mzN1yF1ZMcfJxpL7H6nLny1jqAOe2+E17OuA\nCpXtQYQu6sx60BWaqmyQ2LrJ/HvTSQdS9IRJ3b9Bwmzr+BPIMOOlybrm4QKBgFuE\nLJ1FqUISk5aiJfkgXqfpzvLJmPIlRBKPCTd6ZgrZeUrFy7cDCUZOX7lLvSjWlvn0\nLNtK+LiYRhHjqOHUM6IvlxXmOSjLPAWdV7eBffX0ky5yVTneds6sf6M2S8WA2OVu\n85/pqIe5Le5t0LcYR0+hJgVyoDifPx2ifioWGAe5AoGBAPnaFM/51V4WuL7INJSu\n6M07D1UYyd/t1CAZUWK8VRtubA+vFH/xe5efBS6+zbMOcRIeid1gbuNr7viW5tDh\ngq9cSNcTZfMDHa2FCrc92RiWIu90zyVJPU3Yj9ijGha2aUKWiYYstWLyfmaeq//m\nCNzyqCrpOzj9vjOyCFljjA4u\n-----END PRIVATE KEY-----\n",
+  "client_email": "parking-lot@intro2cloudcomputing1.iam.gserviceaccount.com",
+  "client_id": "110969177075015016063",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/parking-lot%40intro2cloudcomputing1.iam.gserviceaccount.com"
+}
