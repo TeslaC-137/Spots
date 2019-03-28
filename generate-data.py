@@ -6,15 +6,15 @@ from datetime import datetime, timedelta
 import os
 from google.cloud import storage
 
+# Environmental variables
+PARKING_BUCKET = os.environ.get('PARKING_BUCKET')
+
 parkingLotsAvailable = [1320, 1295, 1265, 1245, 1250, 1300, 1320]
 statusOptions = ["Occupied", "Empty"]
-STORAGE_BUCKET = os.environ.get('PARKING_BUCKET')
-
-CLOUD_STORAGE_BUCKET = os.environ.get('CLOUD_STORAGE_BUCKET')
 
 def create_file(filename, blobName):
     client = storage.Client()
-    bucket = client.get_bucket(STORAGE_BUCKET)
+    bucket = client.get_bucket(PARKING_BUCKET)
     blob = bucket.blob(filename)
     blob.upload_from_filename(filename)
 
@@ -37,9 +37,6 @@ def generate_parking_lot_data(timeReceived):
     print(return_dictionary)
     return json.dumps(return_dictionary)
 
-
-
-#path = HOME + "/parking-data"     # Create this directory in your project "mkdir -p ~/parking-data"
 path = './data'
 try:
     if not os.path.exists(path):
@@ -63,7 +60,7 @@ for i in range(50):
         fileHandle.write("\n".join(listOfJsonForABlock))
 
     client = storage.Client()
-    bucket = client.get_bucket(STORAGE_BUCKET)
+    bucket = client.get_bucket(PARKING_BUCKET)
     blob = bucket.blob(blobName)
     print("Filename is " + filename)
     blob.upload_from_filename(filename)
