@@ -20,13 +20,12 @@ def create_file(filename, blobName):
 
 
 def generate_parking_lot_data(timeReceived):
-    # receivedAt = time.strftime("%Y-%m-%d %H-%M-%S", timeReceived)
-    receivedAt = '{:%Y-%m-%d %H-%M-%s}'.format(timeReceived)
+    receivedAt = '{:%Y-%m-%d %H:%M:%s}'.format(timeReceived)
     parkingLot = random.choice(parkingLotsAvailable)
     parkingSpot = random.randint(1, 101)
     status = random.choice(statusOptions)
-    occupiedUntil = '{:%Y-%m-%d %H-%M-%s}'.format(
-        timeReceived + timedelta(minutes=2))
+    occupiedUntil = '{:%Y-%m-%d %H:%M:%s}'.format(
+        timeReceived + timedelta(minutes=random.randint(10, 30)))
     return_dictionary = {
         "receivedAt": receivedAt,
         "parkingLot": parkingLot,
