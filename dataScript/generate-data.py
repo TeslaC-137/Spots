@@ -1,19 +1,20 @@
+#! /usr/bin/python3
 import json
 import time
 import random
 from datetime import datetime, timedelta
 import os
-from gcloud import storage
-from oauth2client.service_account import ServiceAccountCredentials
+from google.cloud import storage
 
 parkingLotsAvailable = [1320, 1295, 1265, 1245, 1250, 1300, 1320]
 statusOptions = ["Occupied", "Empty"]
-bucketName = "parking-lot-data-bucket"
+STORAGE_BUCKET = os.environ.get('PARKING_BUCKET')
 
+CLOUD_STORAGE_BUCKET = os.environ.get('CLOUD_STORAGE_BUCKET')
 
 def create_file(filename, blobName):
-    client = storage.Client.from_service_account_json("key.json")
-    bucket = client.get_bucket(bucketName)
+    client = storage.Client()
+    bucket = client.get_bucket(STORAGE_BUCKET)
     blob = bucket.blob(filename)
     blob.upload_from_filename(filename)
 
@@ -37,19 +38,23 @@ def generate_parking_lot_data(timeReceived):
     return json.dumps(return_dictionary)
 
 
-currTime = datetime.now()
-path = "./data/"
+
+#path = HOME + "/parking-data"     # Create this directory in your project "mkdir -p ~/parking-data"
+path = './data'
 try:
-    os.mkdir(path)
+    if not os.path.exists(path):
+        os.mkdir(path)
 except OSError:
     print("Creation of directory %s failed", path)
-    exit(0)
+    exit(1)
 else:
     print("Successfully created directory %s", path)
 
+
 for i in range(50):
-    filename = '{0}parkingLot_{1}.txt'.format(path, i)
-    blobName = 'parkingLot_{0}.txt'.format(i)
+    currTime = datetime.now()
+    filename = '{0}/parkingLot_{1}.json'.format(path, i)
+    blobName = 'parkingLot_{0}.json'.format(i)
     listOfJsonForABlock = []
     for j in range(20):
         listOfJsonForABlock.append(generate_parking_lot_data(currTime))
@@ -57,10 +62,10 @@ for i in range(50):
     with open(filename, "w") as fileHandle:
         fileHandle.write("\n".join(listOfJsonForABlock))
 
-    client = storage.Client.from_service_account_json("key.json")
-    bucket = client.get_bucket(bucketName)
+    client = storage.Client()
+    bucket = client.get_bucket(STORAGE_BUCKET)
     blob = bucket.blob(blobName)
     print("Filename is " + filename)
     blob.upload_from_filename(filename)
 
-    time.sleep(120)
+    time.sleep(5)
