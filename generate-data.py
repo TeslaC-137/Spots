@@ -34,7 +34,7 @@ def generate_parking_lot_data(timeReceived):
         "occupiedUntil": occupiedUntil
     }
     print(return_dictionary)
-    return json.dumps(return_dictionary)
+    return json.dumps(return_dictionary) + "\n"
 
 path = './data'
 try:
@@ -51,12 +51,12 @@ for i in range(50):
     currTime = datetime.now()
     filename = '{0}/parkingLot_{1}.json'.format(path, i)
     blobName = 'parkingLot_{0}.json'.format(i)
-    listOfJsonForABlock = []
+    listOfJsonForABlock = ""
     for j in range(20):
-        listOfJsonForABlock.append(generate_parking_lot_data(currTime))
+        listOfJsonForABlock += generate_parking_lot_data(currTime)
         currTime += timedelta(minutes=2)
     with open(filename, "w") as fileHandle:
-        fileHandle.write("\n".join(listOfJsonForABlock))
+        fileHandle.write(listOfJsonForABlock)
 
     client = storage.Client()
     bucket = client.get_bucket(PARKING_BUCKET)
