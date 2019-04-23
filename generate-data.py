@@ -37,7 +37,7 @@ def create_file(filename, blobName):
 def generate_parking_lot_data(timeReceived):
     receivedAt = timeReceived.strftime('%Y-%m-%d %H:%M:%S')
     parkingLot = random.choice(parkingLotsAvailable)
-    parkingSpot = random.randint(1, 101)
+    parkingSpot = random.randint(1, 11)
     status = random.choice(statusOptions)
     occupiedUntil = timeReceived + timedelta(minutes=random.randint(10, 30))
     occupiedUntil = occupiedUntil.strftime('%Y-%m-%d %H:%M:%S')
