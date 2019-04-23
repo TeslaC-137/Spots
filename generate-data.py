@@ -9,19 +9,23 @@ from google.cloud import storage
 # Environmental variables
 PARKING_BUCKET = os.environ.get('PARKING_BUCKET')
 
-parkingLotsAvailable = [1350, 1295, 1265, 1245, 1250, 1300, 1365]
+parkingLotsAvailable = ["Google Parking Lot 1365", "Google Parking Lot 1295",
+                        "Google Parking Lot 1950", "Google Parking Lot 1212",
+                        "Google Parking Lot MAT1"]
 
 locations = {}      # (Latitude Logitude)
-locations[1350] = (37.421396, -122.077253)
-locations[1295] = (37.420275, -122.075112)
-locations[1265] = (37.408717, -122.011989)
-locations[1245] = (37.420351, -122.074267)
-locations[1250] = (37.421364, -122.074402)
-locations[1300] = (37.421350, -122.075812)
-locations[1365] = (37.418487, -122.073341)
+locations["Google Parking Lot 1365"] = ("Google Building 1365, Charleston Road, Mountain View, CA",
+                                            (37.418428, -122.073320))
+locations["Google Parking Lot 1295"] = ("Google Building 1295, Charleston Road, Mountain View, CA",
+                                            (37.420177, -122.075123))
+locations["Google Parking Lot 1950"] = ("Google Building 1950, Charleston Road, Mountain View, CA",
+                                            (37.422125, -122.087583))
+locations["Google Parking Lot 1212"] = ("Google Building 1212, Bordeaux Drive, Sunnyvale, CA",
+                                            (37.410230, -122.022211))
+locations["Google Parking Lot MAT1"] = ("Google Building MAT1, North Mathilda Avenue, Sunnyvale, CA",
+                                            (37.408660, -122.026474))
 
 statusOptions = ["Occupied", "Empty"]
-
 
 def create_file(filename, blobName):
     client = storage.Client()
@@ -40,8 +44,9 @@ def generate_parking_lot_data(timeReceived):
     return_dictionary = {
         "receivedAt": receivedAt,
         "parkingLot": parkingLot,
-        "latitude": locations[parkingLot][0],
-        "longitude": locations[parkingLot][1],
+        "address": locations[parkingLot][0],
+        "latitude": locations[parkingLot][1][0],
+        "longitude": locations[parkingLot][1][1],
         "parkingSpot": parkingSpot,
         "status": status,
         "occupiedUntil": occupiedUntil
