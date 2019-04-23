@@ -85,25 +85,27 @@ for i in range(50):
 
     time.sleep(5)
 
-# CREATE TABLE parkingDataTable2 (
-#     parkingLot INT NOT NULL,
+# CREATE TABLE parkingDataTable3 (
+#     parkingLot VARCHAR(255) NOT NULL,
 #     parkingSpot INT NOT NULL,
 #     receivedAt TIMESTAMP NOT NULL DEFAULT  '1970-01-01 00:00:01',
 #     status VARCHAR(255) NOT  NULL DEFAULT 'UNKNOWN',
 #     occupiedUntil TIMESTAMP NOT NULL DEFAULT  '1970-01-01 00:00:01',
 #     latitude DOUBLE NOT NULL DEFAULT 0.0,
 #     longitude DOUBLE NOT NULL DEFAULT 0.0,
+#     address VARCHAR(255) NOT NULL,
 #     CONSTRAINT PK_parkingData PRIMARY KEY (parkingLot, parkingSpot)
 # );
 
 # +---------------+--------------+------+-----+---------------------+-------+
 # | Field         | Type         | Null | Key | Default             | Extra |
 # +---------------+--------------+------+-----+---------------------+-------+
-# | parkingLot    | int(11)      | NO   | PRI | NULL                |       |
+# | parkingLot    | varchar(255) | NO   | PRI | NULL                |       |
 # | parkingSpot   | int(11)      | NO   | PRI | NULL                |       |
 # | receivedAt    | timestamp    | NO   |     | 1970-01-01 00:00:01 |       |
 # | status        | varchar(255) | NO   |     | UNKNOWN             |       |
 # | occupiedUntil | timestamp    | NO   |     | 1970-01-01 00:00:01 |       |
 # | latitude      | double       | NO   |     | 0                   |       |
 # | longitude     | double       | NO   |     | 0                   |       |
+# | address       | varchar(255) | NO   |     | NULL                |       |
 # +---------------+--------------+------+-----+---------------------+-------+
