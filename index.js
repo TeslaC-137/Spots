@@ -7,33 +7,40 @@
 // CREATE DATABASE parkingDatabase;
 // USE parkingDatabase
 
-// NOTE: The default dates are such because of the NO_ZERO_DATES in strict mode
-// CREATE TABLE parkingDataTable (
-//     parkingLot INT NOT NULL,
+// CREATE TABLE parkingDataTable3 (
+//     parkingLot VARCHAR(255) NOT NULL,
 //     parkingSpot INT NOT NULL,
 //     receivedAt TIMESTAMP NOT NULL DEFAULT  '1970-01-01 00:00:01',
 //     status VARCHAR(255) NOT  NULL DEFAULT 'UNKNOWN',
 //     occupiedUntil TIMESTAMP NOT NULL DEFAULT  '1970-01-01 00:00:01',
-//     PRIMARY KEY (parkingLot, parkingSpot)
+//     latitude DOUBLE NOT NULL DEFAULT 0.0,
+//     longitude DOUBLE NOT NULL DEFAULT 0.0,
+//     address VARCHAR(255) NOT NULL,
+//     CONSTRAINT PK_parkingData PRIMARY KEY (parkingLot, parkingSpot)
 // );
 
 // +---------------+--------------+------+-----+---------------------+-------+
 // | Field         | Type         | Null | Key | Default             | Extra |
 // +---------------+--------------+------+-----+---------------------+-------+
-// | parkingLot    | int(11)      | NO   | PRI | NULL                |       |
+// | parkingLot    | varchar(255) | NO   | PRI | NULL                |       |
 // | parkingSpot   | int(11)      | NO   | PRI | NULL                |       |
 // | receivedAt    | timestamp    | NO   |     | 1970-01-01 00:00:01 |       |
 // | status        | varchar(255) | NO   |     | UNKNOWN             |       |
 // | occupiedUntil | timestamp    | NO   |     | 1970-01-01 00:00:01 |       |
+// | latitude      | double       | NO   |     | 0                   |       |
+// | longitude     | double       | NO   |     | 0                   |       |
+// | address       | varchar(255) | NO   |     | NULL                |       |
 // +---------------+--------------+------+-----+---------------------+-------+
 
+
+// const process = require('process'); // Allow env variable mocking
 const mysql = require('mysql');
 
 const connectionName = 'intro2cloudcomputing18:us-west1:parking-sql-instance';
 const dbUser = 'root';
 const dbPassword = 'password123';
 const dbName = 'parkingDatabase';
-const parkingTable = 'parkingDataTable';
+const parkingTable = 'parkingDataTable3';
 
 const mysqlConfig = {
     connectionLimit: 1,
@@ -58,7 +65,7 @@ exports.pubSubToCloudSQL = (event, callback) => {
 
     // Incoming data is in JSON format
     const incomingData = PubSubMessage.data ? Buffer.from(PubSubMessage.data, 'base64').toString()
-        : "{'receivedAt':'1970-01-01 00:00:01','parkingLot':'UNKNOWN','parkingSpot':0,'status':'UNKNOWN','occupiedUntil':'1970-01-01 00:00:01'}";
+        : "{'receivedAt':'1970-01-01 00:00:01','parkingLot':'UNKNOWN','parkingSpot':0,'status':'UNKNOWN','occupiedUntil':'1970-01-01 00:00:01','address':'N/A','latitude':0,'longitude':0}";
     const row = JSON.parse(incomingData);
 
     // Print incoming and update data.
@@ -73,18 +80,24 @@ exports.pubSubToCloudSQL = (event, callback) => {
     }
 
     const queryString = "INSERT INTO " + parkingTable +
-          				" (parkingLot, parkingSpot, receivedAt, status, occupiedUntil) " +
-                        "VALUES ("+
-                            row.parkingLot.toString() + ", " +
+          				" (parkingLot, parkingSpot, receivedAt, status, occupiedUntil, address, latitude, longitude) " +
+                        "VALUES ('"+
+                            row.parkingLot + "', " +
                             row.parkingSpot.toString() + ", '" +
                             row.receivedAt + "', '" +
                             row.status + "', '" +
-                            row.occupiedUntil +
-                        "') " +
+                            row.occupiedUntil + "', '" +
+          					row.address + "', " +
+          					row.latitude.toString() + ", " +
+          					row.longitude.toString() +
+                        ") " +
                         "ON DUPLICATE KEY UPDATE " +
                             "receivedAt=VALUES(receivedAt), " +
                             "status=VALUES(status)," +
-                            "occupiedUntil=VALUES(occupiedUntil)";
+                            "occupiedUntil=VALUES(occupiedUntil)," +
+          					"address=VALUES(address)," +
+          					"latitude=VALUES(latitude)," +
+          					"longitude=VALUES(longitude)";
 
     mysqlPool.query(queryString,
         (err, results) => {
