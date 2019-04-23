@@ -66,7 +66,7 @@ else:
     print("Successfully created directory %s", path)
 
 
-for i in range(50):
+for i in range(5000):
     currTime = datetime.now()
     filename = '{0}/parkingLot_{1}.json'.format(path, i)
     blobName = 'parkingLot_{0}.json'.format(i)
